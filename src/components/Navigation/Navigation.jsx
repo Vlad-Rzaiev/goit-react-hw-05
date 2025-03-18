@@ -17,7 +17,7 @@ export default function Navigation() {
             </NavLink>
           </li>
           <li className={css.item}>
-            <NavLink to="/moviespage" className={biuldLinkClass}>
+            <NavLink to="/movies" className={biuldLinkClass}>
               Movies
             </NavLink>
           </li>
