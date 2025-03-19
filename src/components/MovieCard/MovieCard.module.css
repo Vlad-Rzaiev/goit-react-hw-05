@@ -31,6 +31,11 @@
   visibility: visible;
 }
 
+.img {
+  width: 100%;
+  height: auto;
+}
+
 .title,
 .rating,
 .year {
@@ -43,7 +48,6 @@
   color: #fff;
   background: rgba(0, 0, 0, 0.8);
   margin-top: auto;
-  font-size: 1.4rem;
   text-align: center;
 }
 
@@ -53,7 +57,6 @@
   background: rgba(0, 0, 0, 0.7);
   top: 10px;
   left: 10px;
-  font-size: 1.2rem;
 }
 
 .year {
@@ -62,5 +65,4 @@
   color: #fff;
   top: 10px;
   right: 10px;
-  font-size: 1.2rem;
 }

@@ -12,12 +12,12 @@ export default function Navigation() {
       <nav className={css.nav}>
         <ul className={css.list}>
           <li className={css.item}>
-            <NavLink to="/" className={biuldLinkClass}>
+            <NavLink className={biuldLinkClass} to="/">
               Home
             </NavLink>
           </li>
           <li className={css.item}>
-            <NavLink to="/movies" className={biuldLinkClass}>
+            <NavLink className={biuldLinkClass} to="/movies">
               Movies
             </NavLink>
           </li>

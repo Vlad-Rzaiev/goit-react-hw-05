@@ -18,3 +18,12 @@ export const getTrendingMovies = async () => {
 
   return resp.data.results;
 };
+
+export const getMovieDetails = async movieId => {
+  const resp = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`,
+    options
+  );
+
+  return resp.data;
+};

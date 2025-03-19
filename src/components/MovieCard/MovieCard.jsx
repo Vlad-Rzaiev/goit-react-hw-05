@@ -14,7 +14,7 @@ export default function MovieCard({ movie }) {
       <img className={css.img} src={getImgURL} alt={`${movie.title} poster`} />
       <div className={css.content}>
         <h2 className={css.title}>{movie.title}</h2>
-        <p className={css.rating}>{roundedRating}</p>
+        <p className={css.rating}>IMDB: {roundedRating}</p>
         <p className={css.year}>{releaseYear}</p>
       </div>
     </div>

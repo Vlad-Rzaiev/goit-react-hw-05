@@ -9,6 +9,7 @@
 }
 
 .item {
+  cursor: pointer;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
