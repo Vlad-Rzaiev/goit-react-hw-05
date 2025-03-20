@@ -6,6 +6,7 @@ export default function MovieCard({ movie }) {
   const getImgURL = movie.poster_path
     ? `${BASE_IMG_URL}${IMAGE_SIZE}${movie.poster_path}`
     : 'https://via.placeholder.com/500x750?text=No+Image';
+
   const roundedRating = Number(movie.vote_average.toFixed(1));
   const releaseYear = movie.release_date.split('-')[0];
 

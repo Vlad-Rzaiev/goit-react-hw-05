@@ -82,8 +82,12 @@
 }
 
 .rating {
-  margin-top: 10px;
   font-size: 18px;
+}
+
+.ratingWrap {
+  display: flex;
+  gap: 8px;
 }
 
 .countriesWrap {

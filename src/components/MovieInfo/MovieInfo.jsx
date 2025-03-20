@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import css from './MovieInfo.module.css';
 
 export default function MovieInfo({
@@ -58,7 +59,16 @@ export default function MovieInfo({
         <p className={css.date}>
           Release date: <span className={css.dateNumber}>{formatDate}</span>
         </p>
-        <p className={css.rating}>Rating: {vote_average.toFixed(1)}</p>
+        <div className={css.ratingWrap}>
+          <div>
+            <AiFillStar size={20} color="#aaff22" />
+            <AiFillStar size={20} color="#aaff22" />
+            <AiFillStar size={20} color="#aaff22" />
+            <AiFillStar size={20} color="#aaff22" />
+            <AiOutlineStar size={20} color="#aaff22" />
+          </div>
+          <p className={css.rating}>{vote_average.toFixed(1)}</p>
+        </div>
       </div>
     </div>
   );
