@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useParams } from 'react-router-dom';
-import { getMovieDetails } from '../../api-tmdb';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
+import { fetchMovieDetails } from '../../api-tmdb';
 import clsx from 'clsx';
+import GoBack from '../../components/GoBack/GoBack';
 import MovieInfo from '../../components/MovieInfo/MovieInfo';
 import Loader from '../../components/Loader/Loader';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
@@ -14,6 +15,9 @@ export default function MovieDetailsPage() {
 
   const { movieId } = useParams();
 
+  const location = useLocation();
+  const goBackLink = useRef(location.state);
+
   const biuldLinkClass = ({ isActive }) => {
     return clsx(css.link, isActive && css.active);
   };
@@ -24,7 +28,7 @@ export default function MovieDetailsPage() {
         setIsError(false);
         setIsLoading(true);
 
-        const movieData = await getMovieDetails(movieId);
+        const movieData = await fetchMovieDetails(movieId);
         setMovie(movieData);
       } catch {
         setIsError(true);
@@ -38,6 +42,7 @@ export default function MovieDetailsPage() {
 
   return (
     <>
+      <GoBack to={goBackLink.current ?? '/movies'} />
       {movie && <MovieInfo movie={movie} />}
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
@@ -54,7 +59,11 @@ export default function MovieDetailsPage() {
         </li>
       </ul>
 
-      <Outlet />
+      <Suspense
+        fallback={<div className={css.loadingPage}>Loading subpage...</div>}
+      >
+        <Outlet />
+      </Suspense>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieCast } from '../../api-tmdb';
+import { fetchMovieCast } from '../../api-tmdb';
 import MovieCastList from '../MovieCastList/MovieCastList';
 import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -20,7 +20,7 @@ export default function MovieCast() {
         setIsError(false);
         setIsLoading(true);
 
-        const castData = await getMovieCast(movieId);
+        const castData = await fetchMovieCast(movieId);
         setCast(castData.cast);
       } catch {
         setIsError(true);
@@ -34,15 +34,15 @@ export default function MovieCast() {
 
   return (
     <>
-      {cast.length === 0 && <NoData />}
+      {isLoading && <Loader />}
+      {isError && <ErrorMessage />}
       {cast.length > 0 && (
         <div className={css.container}>
           <h2 className={css.title}>Top cast</h2>
           <MovieCastList cast={cast} />
-          {isLoading && <Loader />}
-          {isError && <ErrorMessage />}
         </div>
       )}
+      {cast.length === 0 && !isLoading && <NoData />}
     </>
   );
 }

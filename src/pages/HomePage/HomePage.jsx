@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTrendingMovies } from '../../api-tmdb';
+import { fetchTrendingMovies } from '../../api-tmdb';
 import MovieList from '../../components/MovieList/MovieList';
 import Loader from '../../components/Loader/Loader';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
@@ -16,7 +16,7 @@ export default function HomePage() {
         setIsError(false);
         setIsLoading(true);
 
-        const data = await getTrendingMovies();
+        const data = await fetchTrendingMovies();
         setMovies(data);
       } catch {
         setIsError(true);

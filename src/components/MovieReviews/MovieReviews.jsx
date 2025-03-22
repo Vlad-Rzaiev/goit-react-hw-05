@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getMovieReviews } from '../../api-tmdb';
+import { fetchMovieReviews } from '../../api-tmdb';
 import { useParams } from 'react-router-dom';
 import NoData from '../NoData/NoData';
 import Loader from '../Loader/Loader';
@@ -20,7 +20,7 @@ export default function MovieReviews() {
         setIsError(false);
         setIsLoading(true);
 
-        const { results } = await getMovieReviews(movieId);
+        const { results } = await fetchMovieReviews(movieId);
         setReviews(results);
       } catch {
         setIsError(true);
@@ -34,15 +34,15 @@ export default function MovieReviews() {
 
   return (
     <>
-      {reviews.length === 0 && <NoData />}
+      {isLoading && <Loader />}
+      {isError && <ErrorMessage />}
       {reviews.length > 0 && (
         <div className={css.container}>
           <h2 className={css.title}>User reviews</h2>
           <MovieReviewsList reviews={reviews} />
-          {isLoading && <Loader />}
-          {isError && <ErrorMessage />}
         </div>
       )}
+      {reviews.length === 0 && !isLoading && <NoData />}
     </>
   );
 }
