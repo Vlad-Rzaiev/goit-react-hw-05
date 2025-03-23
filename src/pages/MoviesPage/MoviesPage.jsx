@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchSearchMovie } from '../../api-tmdb';
+import { nanoid } from 'nanoid';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import MovieList from '../../components/MovieList/MovieList';
 import Loader from '../../components/Loader/Loader';
@@ -15,15 +16,19 @@ export default function MoviesPage() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const id = nanoid();
   const searchQuery = searchParams.get('q') ?? '';
+  const searchId = searchParams.get('id') ?? '';
 
   const onSubmitForm = text => {
     const nextParams = new URLSearchParams(searchParams);
 
     if (text !== '') {
       nextParams.set('q', text);
+      nextParams.set('id', id);
     } else {
       nextParams.delete('q');
+      nextParams.delete('id');
     }
 
     setSearchParams(nextParams);
@@ -34,6 +39,7 @@ export default function MoviesPage() {
 
     const asyncWrap = async () => {
       try {
+        setMovies([]);
         setNoData(false);
         setIsError(false);
         setIsLoading(true);
@@ -51,7 +57,7 @@ export default function MoviesPage() {
     };
 
     asyncWrap();
-  }, [searchQuery]);
+  }, [searchQuery, searchId]);
 
   return (
     <>
