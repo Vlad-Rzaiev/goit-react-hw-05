@@ -52,7 +52,7 @@ export default function MoviesPage() {
         if (data.total_results === 0) setNoData(true);
 
         if (data.total_pages === page) {
-          toast('No more movies!', {
+          toast('This is all movies for you request!', {
             icon: '🎭',
           });
           setEndCollection(true);
