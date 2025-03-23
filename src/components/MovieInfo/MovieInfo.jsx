@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import noImg from '../../img/no-poster.webp';
 import css from './MovieInfo.module.css';
 
 export default function MovieInfo({
@@ -20,7 +21,8 @@ export default function MovieInfo({
   const POSTER_SIZE = 'w300';
   const getPosterURL = poster_path
     ? `${BASE_IMG_URL}${POSTER_SIZE}${poster_path}`
-    : 'https://via.placeholder.com/500x750?text=No+Image';
+    : noImg;
+
   const formatDate = format(new Date(release_date), 'd MMMM yyyy');
 
   return (
